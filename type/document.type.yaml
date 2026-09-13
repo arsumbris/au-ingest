@@ -1,0 +1,11 @@
+#: A document, materialized as local evidence you own.
+#: A Word / PowerPoint / Excel / OpenDocument / RTF / EPUB / CSV file, rendered to clean markdown so a claim can ground in the exact words.
+#: Extracts text and supported structure; layout and formatting may differ from the original.
+#: Check the original when exact wording, tables, or number formatting matter.
+#: Use the pdf type for PDFs.
+extends: source::au-base-types
+fields:
+  #: the specific format this note was rendered from (docx, pptx, xlsx, odt, rtf, epub, csv, ...). container variants (docm, xlsm, ...) record as their parser family.
+  format: String
+  #: the day we archived this document, the filing date. (a document's own created/modified dates are not read.)
+  captured: Date

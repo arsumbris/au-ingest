@@ -1,0 +1,6 @@
+# Development records and research remain on disk outside the capability graph.
+agent-inbox/
+converters/
+operations/
+memory/
+eidos/

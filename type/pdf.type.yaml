@@ -1,0 +1,11 @@
+#: A PDF document, materialized as local evidence you own.
+#: The body is the PDF's text layer as clean markdown (multi-column reading order, tables), so a claim can ground in the exact words.
+#: A text PDF with tables or dense math is not guaranteed faithful: a mangled super/subscript cluster can render as a plausible-looking table that is wrong.
+#: The raw always backstops it, so check the raw when the body's tables or math matter.
+#: Text-layer only: a scanned or image PDF has no text layer and fails loud.
+extends: source::au-base-types
+fields:
+  #: Optional page count from an earlier import or manual annotation; AnyDoc does not emit it.
+  pages?: Number
+  #: The supplied capture date; embedded document dates are not read.
+  captured: Date

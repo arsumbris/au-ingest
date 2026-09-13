@@ -1,0 +1,7 @@
+type: au.engine.repo::au-engine
+name: au-ingest
+description: Local document and PDF conversion into typed source notes, with a shared converter contract for domain packages.
+remote: git@github.com:arsumbris/au-ingest.git
+deps:
+  - name: au-base-types
+  - name: au-mcp-sdk

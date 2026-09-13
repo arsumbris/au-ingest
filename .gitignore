@@ -1,0 +1,7 @@
+.DS_Store
+node_modules/
+/converters/package-lock.json
+operations/
+.arsumbris/*.sock
+.arsumbris/*.lock
+agent-inbox/repo-registry.yaml

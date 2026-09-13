@@ -1,0 +1,6 @@
+#: One archived source and its explicit companion note destination.
+fields:
+  #: An archived source path inside the served repository.
+  raw: String
+  #: A .md destination inside the served repository.
+  destination: String

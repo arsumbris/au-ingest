@@ -1,0 +1,17 @@
+{
+  "name": "au-ingest-converters",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Local document and PDF converters for au-ingest.",
+  "scripts": {
+    "test": "node --test pdf.test.mjs document.test.mjs ingest.test.mjs worker.test.mjs note.test.mjs",
+    "test:engine": "node --test engine.test.mjs"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "dependencies": {
+    "@firecrawl/anydoc": "0.2.4"
+  }
+}

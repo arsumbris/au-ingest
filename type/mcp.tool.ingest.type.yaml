@@ -1,0 +1,40 @@
+#: Convert archived files into companion source notes through the engine.
+extends: mcp.tool::au-mcp-sdk
+fields:
+  #: An archived source path inside the served repository. Supply raw, raws or items.
+  raw?: String
+  #: Archived source paths, processed in order with a shared date and converter.
+  raws?: String[]
+  #: Up to 32 objects with raw and destination paths, sharing date, converter and refresh.
+  items?: ingest-item[]
+  #: The capture date, supplied by the caller.
+  date: Date
+  #: document, pdf, or a mounted converter, optionally qualified by its owning repo (e.g. post::<repo>).
+  converter: String
+  #: Replace an existing note's full content, guarded by its hash. Defaults to false.
+  refresh?: Boolean
+  #: Optional stable .md destination inside the served repository; single raw only.
+  destination?: String
+meta:
+  - type: plugin-runtime-meta::au-mcp-sdk
+    entry: ./ingest.mjs
+    contractVersion: 0
+  - type: tool-presentation-meta::au-mcp-sdk
+    description: |
+      Convert an archived source into a typed companion note.
+      Supply exactly one of raw, raws or items, a capture date (YYYY-MM-DD), and a converter.
+      Use document for Office/OpenDocument/RTF/EPUB/CSV, pdf for a text-layer PDF,
+      or the name of a mounted domain converter such as post.
+      Captures and notes must be regular files inside the served repository, outside nested repos and metadata, without symlinked paths.
+      With raw or raws, the note uses the raw's stem unless a single-raw call supplies a destination ending in .md.
+      For explicit batch destinations, use items: [{"raw":"captures/source.raw.json","destination":"notes/source.md"}].
+      Every item accepts only raw and destination; both are required. Do not combine items with raw, raws or a top-level destination.
+      Items are processed in order with the shared date, converter and refresh setting.
+      Identical content is a no-op. Existing notes are preserved unless refresh is true.
+      Refresh replaces the full note with a hash guard. Keep raw captures immutable.
+      At most 32 items, 64 MiB per raw, and 8 MiB per note. Each conversion has 30 seconds.
+      Every item reports its outcome and diagnostics. Partial failures set isError.
+      An unknown write or pending validation stops the batch. Inspect the destination, diagnostics, and git history before continuing.
+      Coordinate other writers during creation: the current engine has no atomic absence guard.
+  - type: tool-access-meta::au-mcp-sdk
+    broker: read-write

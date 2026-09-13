@@ -1,0 +1,6 @@
+#: A source subtype for the external converter fixture.
+extends: source::au-base-types
+fields:
+  id: String
+  captured: Date
+  count: Number
